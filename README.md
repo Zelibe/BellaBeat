@@ -43,4 +43,4 @@ Cited: the dataset is properly cited because it is considered as crowdsourcing d
 #### What tools are you choosing and why?
 I will be using three tools for this project, which are; Google Sheets, SQL and Tableau. For this stage we will be using Google Sheets for the cleaning process, SQL for the analyzing process and Tableau for visualization.
 
-For the cleaning process i used Excel to remove duplicates, to change format and to verify unique values.
+For the cleaning process i used Google Sheets to remove duplicates, to change format and to verify unique values.
