@@ -23,8 +23,6 @@ See data https://www.kaggle.com/datasets/arashnic/fitbit?resource=download
 
 *The dataset is either a wide or long dataset that is stored in 18 CSV files, but i focused my analysis on the following:*
 + dailyActivity_merged
-+ dailyCalories_merged
-+ dailySteps_merged
 + sleepDay_merged
 + weightLoginfo_merged
 
@@ -43,4 +41,18 @@ Cited: the dataset is properly cited because it is considered as crowdsourcing d
 #### What tools are you choosing and why?
 I will be using three tools for this project, which are; Google Sheets, SQL and Tableau. For this stage we will be using Google Sheets for the cleaning process, SQL for the analyzing process and Tableau for visualization.
 
-For the cleaning process i used Google Sheets to remove duplicates, to change format and to verify unique values.
+For the cleaning process i used Google Sheets to remove duplicates, remove blanks using conditional formatting, to change format and to verify unique values for all tables.
+1.  For the *dailyActivity_merged table* the column name 'activitydate' was changed to 'Date'
+   + The coiumn names 'TrackerDistance', 'LoggedDistance', and 'SedentaryActiveDistance' were removed.
+   + The table was renamed *'DailyActivity_Merged_Cleaned'*
+
+2.  For the *sleepDay_merged* table the column name 'sleepday' was changed to 'Date'.
+   + The 'SleepDay' column was changed into two separate columns 'Date' and 'Time'.
+   + A new column 'Time_Awake' was created by subtracting column 'TotalMinutes_Asleep' from column 'TotalTime_In_Bed'.
+   + The column 'Total Sleep Records' was removed.
+   + The table was renamed as *'SleepDay_Merged_Cleaned'*
+
+3.  For the *weightLoginfo_merged*  the column 'Manual Report' was changed to 'Report_Type'.
+   + Removed columns 'Fat' and 'LogId'
+   + The table was renamed *'WeightLogInfo_Merged_Cleaned'* 
+
