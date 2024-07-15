@@ -54,5 +54,8 @@ For the cleaning process i used Google Sheets to remove duplicates, remove blank
 
 3.  For the *weightLoginfo_merged*  the column 'Manual Report' was changed to 'Report_Type'.
    + Removed columns 'Fat' and 'LogId'
-   + The table was renamed *'WeightLogInfo_Merged_Cleaned'* 
+   + The table was renamed *'WeightLogInfo_Merged_Cleaned'*
+
+### ANALYZE
+
 
