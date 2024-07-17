@@ -86,6 +86,7 @@ The initial objective was to determine the frequency with which each user ID app
  + Active users
  + Moderate users
  + Light users
+
       SELECT id,
       COUNT(id) AS total_uses,
       CASE
