@@ -66,3 +66,15 @@ The cleaned data was downloaded and moved to SQL by:
 #### Checking the number of unique ids in each dataset
     SELECT COUNT(DISTINCT id) AS unique_id 
     FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+
+This query was repeated for all the tables substituting the correct table names in each case, The results are as follows:
+   + *DailyActivities_Merged_Cleaned - 33 unique ids/users*
+   + *SleepDay_merged_Cleaned - 24 unique ids/users*
+   + *WeightLogInfo_merged_Cleaned - 8 unique ids/users*
+
+The initial objective was to determine the frequency with which each user ID appeared in the logs, essentially measuring how often each users were using their Fitbit smart devices. The 
+ query below shows how this can be achieved.
+     SELECT id,
+     COUNT(id) AS total_id
+     FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+     GROUP BY id
