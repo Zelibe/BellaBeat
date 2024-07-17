@@ -83,7 +83,15 @@ The initial objective was to determine the frequency with which each user ID app
  This shows that the dailyactivity for each user id ranged from 4 to 31 times.
 
  Now i classified their activities into three classes, which are;
-   
-    + Active users
-    + Moderate users
-    + Light users
+ + Active users
+ + Moderate users
+ + Light users
+      SELECT id,
+      COUNT(id) AS total_uses,
+      CASE
+      WHEN COUNT(id) BETWEEN 21 AND 31 THEN 'active_user'
+      WHEN COUNT(id) BETWEEN 11 and 20 THEN 'moderate_user'
+      WHEN COUNT(id) BETWEEN 0 and 10 THEN 'light_user'
+      END AS user_classification
+      FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+      GROUP BY id
