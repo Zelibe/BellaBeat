@@ -58,4 +58,11 @@ For the cleaning process i used Google Sheets to remove duplicates, remove blank
 
 ### ANALYZE
 
+After the data was cleaned using Google Spreadsheet, I will bwe using SQL to continue my analysis
+The cleaned data was downloaded and moved to SQL by:
+  + Creating a dataset of each data then creating a table of each data
+  + Observing the schema of each data and preview each data before querying the data.
 
+#### Checking the number of unique ids in each dataset
+    SELECT COUNT(DISTINCT id) AS unique_id 
+    FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
