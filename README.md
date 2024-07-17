@@ -82,10 +82,7 @@ The initial objective was to determine the frequency with which each user ID app
 
  This shows that the dailyactivity for each user id ranged from 4 to 31 times.
 
- Now i classified their activities into three classes, which are;
- + Active users
- + Moderate users
- + Light users
+ Now i classified their activities into three classes, which are; Active users, Moderate users and Light users.
 
       SELECT id,
       COUNT(id) AS total_uses,
