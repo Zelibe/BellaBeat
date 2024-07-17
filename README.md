@@ -56,7 +56,7 @@ For the cleaning process i used Google Sheets to remove duplicates, remove blank
    + Removed columns 'Fat' and 'LogId'
    + The table was renamed *'WeightLogInfo_Merged_Cleaned'*
 
-### ANALYZE
+### ANALYZE AND SHARE
 
 After the data was cleaned using Google Spreadsheet, I will bwe using SQL to continue my analysis
 The cleaned data was downloaded and moved to SQL by:
@@ -93,3 +93,7 @@ The initial objective was to determine the frequency with which each user ID app
       END AS user_classification
       FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
       GROUP BY id
+ 
+  The result shows that there are more active users than moderate users or light users
+![Sheet 1](https://github.com/user-attachments/assets/1fd8bc3e-037d-455e-adc2-309ccf79c274)
+[Sheet 1.pdf](https://github.com/user-attachments/files/16259075/Sheet.1.pdf)
