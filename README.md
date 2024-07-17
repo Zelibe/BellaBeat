@@ -79,3 +79,10 @@ The initial objective was to determine the frequency with which each user ID app
      COUNT(id) AS total_id
      FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
      GROUP BY id
+
+ This shows that the dailyactivity for each user id ranged from 4 to 31 times.
+
+ Now i classified their activities into three classes, which are;
+    + Active users
+    + Moderate users
+    + Light users
