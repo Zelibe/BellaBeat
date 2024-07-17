@@ -74,6 +74,7 @@ This query was repeated for all the tables substituting the correct table names 
 
 The initial objective was to determine the frequency with which each user ID appeared in the logs, essentially measuring how often each users were using their Fitbit smart devices. The 
  query below shows how this can be achieved.
+     
      SELECT id,
      COUNT(id) AS total_id
      FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
