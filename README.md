@@ -135,5 +135,9 @@ Next, I identified how much sleep users get on a average by compiling the sleep 
      GROUP BY Id
 
  ![Sheet 1 (2)](https://github.com/user-attachments/assets/d8ed87ca-d08a-424b-a46f-687c3a0a5c60)
+*This result shows that most of the users had time disrupted from sleep while in bed and more than 10 users got atleast 7 hours of sleep and more than 5 got less than 7 hours of sleep*
+
+Next, I combined the sleep data with activity data
+
 
 
