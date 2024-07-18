@@ -80,7 +80,7 @@ The initial objective was to determine the frequency with which each user ID app
      FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
      GROUP BY id
 
- This shows that the dailyactivity for each user id ranged from 4 to 31 times.
+ *This shows that the dailyactivity for each user id ranged from 4 to 31 times.*
 
  Now i classified their activities into three classes, which are; Active users, Moderate users and Light users.
 
@@ -94,9 +94,9 @@ The initial objective was to determine the frequency with which each user ID app
       FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
       GROUP BY id
  
-  The result shows that there are more active users than moderate users or light users
+ *The result shows that there are more active users than moderate users or light users*
 ![Sheet 1](https://github.com/user-attachments/assets/1fd8bc3e-037d-455e-adc2-309ccf79c274)
-[Sheet 1.pdf](https://github.com/user-attachments/files/16259075/Sheet.1.pdf)
+
  We will now compare activities and calories in the dailyactivity_merged_cleaned dataset
 
       SELECT Id,
@@ -124,5 +124,16 @@ Now i analyze the dataset to identify the individuals with the highest average n
 ![Sheet 1 (1)](https://github.com/user-attachments/assets/f48ced52-1c19-4a7e-8a78-3ba9a2f5c8c6)
 
 *This shows that the sedentary minutes was the highest on  average*
+
+Next, I identified how much sleep users get on a average by compiling the sleep data into averages by user Ids.
+
+     SELECT id,
+     ROUND(AVG(TotalMinutes_Asleep),2) as avg_sleep_time,
+     ROUND(AVG(TotalTime_In_Bed),2) as avg_time_bed,
+     ROUND(AVG(Time_Awake),2) as avg_time_awake
+     FROM `my-sandbox-project-417117.sleep_data.sleep`
+     GROUP BY Id
+
+ ![Sheet 1 (2)](https://github.com/user-attachments/assets/d8ed87ca-d08a-424b-a46f-687c3a0a5c60)
 
 
