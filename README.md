@@ -122,3 +122,7 @@ Now i analyze the dataset to identify the individuals with the highest average n
      ORDER BY 2,3,4,5 DESC 
      
 ![Sheet 1 (1)](https://github.com/user-attachments/assets/f48ced52-1c19-4a7e-8a78-3ba9a2f5c8c6)
+
+*This shows that the sedentary minutes was the highest on  average*
+
+
