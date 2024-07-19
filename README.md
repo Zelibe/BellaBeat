@@ -1,4 +1,4 @@
-[bquxjob_454df10e_190c3601c1c.csv](https://github.com/user-attachments/files/16276352/bquxjob_454df10e_190c3601c1c.csv)# BellaBeat
+[bquxjob_2a277a7f_190cc4b688b (1).csv](https://github.com/user-attachments/files/16316062/bquxjob_2a277a7f_190cc4b688b.1.csv)[bquxjob_454df10e_190c3601c1c.csv](https://github.com/user-attachments/files/16276352/bquxjob_454df10e_190c3601c1c.csv)# BellaBeat
 ## How Can A Wellness Technology Play It Smart
 
 ### ASK
@@ -125,6 +125,30 @@ Now i analyze the dataset to identify the individuals with the highest average n
 
 *This shows that the sedentary minutes was the highest on  average*
 
+The most and least activity days on the average is then identified using this query
+
+    SELECT Weekday,
+     ROUND(AVG(VeryActive_Minutes),2) as avg_Vactive_mins,
+     ROUND(AVG(FairlyActive_Minutes),2)  as avg_Factive_mins,
+     ROUND(AVG(LightlyActive_Minutes),2) as avg_Lactive_min,
+     ROUND(AVG(Sedentary_Minutes),2) as avg_sedantary_mins 
+    FROM `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis`
+    GROUP BY Weekday
+    ORDER BY 2,3,4,5 DESC
+
+![avg_Vactive_mins, avg_Factive_mins, avg_Lactive_min, avg_sedantary_mins by Weekday](https://github.com/user-attachments/assets/409455c4-953e-4fa7-9642-e7931c7bbeec)
+
+     SELECT Weekday,
+         ROUND(AVG(VeryActive_Minutes + FairlyActive_Minutes + LightlyActive_Minutes),2) as total_avg_active_mins,
+         ROUND(AVG(Sedentary_Minutes),2) as avg_sedantary_mins,
+         ROUND(AVG(Calories), 2) AS avg_calories
+     FROM `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis` 
+     GROUP BY Weekday
+     ORDER BY 2,3,4 DESC
+     
+*
+
+
 Next, I identified how much sleep users get on a average by compiling the sleep data into averages by user Ids.
 
      SELECT id,
@@ -137,7 +161,35 @@ Next, I identified how much sleep users get on a average by compiling the sleep 
  ![Sheet 1 (2)](https://github.com/user-attachments/assets/d8ed87ca-d08a-424b-a46f-687c3a0a5c60)
 *This result shows that most of the users had time disrupted from sleep while in bed and more than 10 users got atleast 7 hours of sleep and more than 5 got less than 7 hours of sleep*
 
-Next, I combined the sleep data with activity data
+Next, i looked at the average of all activities recorded in the daily activities by using the day of the weeek using this query
 
+      SELECT Weekday,
+      ROUND(AVG(Steps),2) AS avg_steps,
+      ROUND(AVG(Total_Distance), 2) AS avg_distance,
+      ROUND(AVG(Calories), 2) AS avg_calories 
+      FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+      GROUP BY Weekday
+      ORDER BY 2 DESC
+
+*This results  shows that Saturday registered the highest total steps on average for all the activities recorded.*
+
+![Sheet 1 (3)](https://github.com/user-attachments/assets/761ba14b-aad3-4787-89c3-6baaddaf4b93)
+
+I then combined the daily activity table with the sleep table to look at the relationship using the steps column in the daily activity table
+
+     SELECT sp.id,
+        AVG(dailyactivity.Steps) AS avg_totalsteps,
+           dailyactivity.Weekday AS weekday,
+        ROUND(AVG(sp.TotalTime_In_Bed),2) AS avg_time_in_bed,
+        ROUND(AVG(sp.TotalMinutes_Asleep),2) AS avg_time_asleep,
+        ROUND(AVG(sp.Time_Awake),2) AS avg_time_awake
+     FROM `my-sandbox-project-417117.sleep_data.sleep` AS sp
+     INNER JOIN `my-sandbox-project-417117.dailyactivities_data.dailyactivities` AS dailyactivity
+        ON dailyactivity.Id = sp.Id
+     GROUP BY sp.Id,
+           dailyactivity.Weekday
+     ORDER BY 2 DESC   
+
+This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended  150minutes - 300 minutes of activity
 
 
