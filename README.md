@@ -146,10 +146,11 @@ The most and least activity days on the average is then identified using this qu
      GROUP BY Weekday
      ORDER BY 2,3,4 DESC
      
-*
+*The analysis shows that Saturdays are found  to be the most active days with 244mins of combined activity(very active,fairly active and lightly active levels) and Sunday the least 
+ recorded with 208mins, The burned calories are found to be consistent daily with Sundays and Thursdays exceptions. Monday is found to be the most sedentary day, while Thursday is 
+ with the least.*
 
-
-Next, I identified how much sleep users get on a average by compiling the sleep data into averages by user Ids.
+Next, I identified how much sleep users get on a average by compiling the sleep data into averages by user Ids then convering minutes to hours.
 
      SELECT id,
      ROUND(AVG(TotalMinutes_Asleep),2) as avg_sleep_time,
@@ -159,7 +160,15 @@ Next, I identified how much sleep users get on a average by compiling the sleep 
      GROUP BY Id
 
  ![Sheet 1 (2)](https://github.com/user-attachments/assets/d8ed87ca-d08a-424b-a46f-687c3a0a5c60)
-*This result shows that most of the users had time disrupted from sleep while in bed and more than 10 users got atleast 7 hours of sleep and more than 5 got less than 7 hours of sleep*
+       
+         SELECT Id,
+             ROUND(AVG(TotalTime_In_Bed)/60) AS avg_time_in_bed_h,
+             ROUND(AVG(TotalMinutes_Asleep)/60) AS avg_time_asleep_h,
+             ROUND(AVG(Time_Awake)/60) AS avg_time_awake_h
+         FROM `my-sandbox-project-417117.sleep_data.sleep`
+         GROUP BY Id
+      
+*This result shows that more than 7 users had time disrupted from sleep while in bed and 16 users got atleast 7 hours of sleep and 8 users got less than 7 hours of sleep*
 
 Next, i looked at the average of all activities recorded in the daily activities by using the day of the weeek using this query
 
@@ -177,19 +186,19 @@ Next, i looked at the average of all activities recorded in the daily activities
 
 I then combined the daily activity table with the sleep table to look at the relationship using the steps column in the daily activity table
 
-     SELECT sp.id,
-        AVG(dailyactivity.Steps) AS avg_totalsteps,
-           dailyactivity.Weekday AS weekday,
-        ROUND(AVG(sp.TotalTime_In_Bed),2) AS avg_time_in_bed,
-        ROUND(AVG(sp.TotalMinutes_Asleep),2) AS avg_time_asleep,
-        ROUND(AVG(sp.Time_Awake),2) AS avg_time_awake
-     FROM `my-sandbox-project-417117.sleep_data.sleep` AS sp
-     INNER JOIN `my-sandbox-project-417117.dailyactivities_data.dailyactivities` AS dailyactivity
-        ON dailyactivity.Id = sp.Id
-     GROUP BY sp.Id,
-           dailyactivity.Weekday
-     ORDER BY 2 DESC   
+         SELECT sp.id,
+             AVG(dailyactivity.Steps) AS avg_totalsteps,
+                 dailyactivity.Weekday AS weekday,
+             ROUND(AVG(sp.TotalTime_In_Bed)/60) AS avg_time_in_bed_h,
+             ROUND(AVG(sp.TotalMinutes_Asleep)/60) AS avg_time_asleep_h,
+             ROUND(AVG(sp.Time_Awake)/60) AS avg_time_awake 
+         FROM `my-sandbox-project-417117.sleep_data.sleep` AS sp
+         INNER JOIN `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis` AS dailyactivity
+         ON dailyactivity.Id = sp.Id
+         GROUP BY sp.Id,
+             dailyactivity.Weekday
+         ORDER BY 2 DESC   
 
-This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended  150minutes - 300 minutes of activity
+*This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended  150minutes - 300 minutes of activity*
 
 
