@@ -199,6 +199,15 @@ I then combined the daily activity table with the sleep table to look at the rel
              dailyactivity.Weekday
          ORDER BY 2 DESC   
 
-*This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended  150minutes - 300 minutes of activity*
+*This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended at least 7 hours of sleep*
 
+Next i looked at the time expenditure per day of the daily activities
 
+       SELECT *
+       EXCEPT(Weight_Kg,Weight_Pounds,Report_Type),
+       CASE WHEN BMI < 18.5 THEN "Underweight"
+            WHEN BMI < 25.0 THEN "Healthy"
+            WHEN BMI < 30.0 THEN "Overweight"
+            ELSE "Obese" END AS BMICategories
+       FROM `my-sandbox-project-417117.weightlog_data.weight`
+       WHERE BMI > 0
