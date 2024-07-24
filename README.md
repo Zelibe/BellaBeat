@@ -201,7 +201,7 @@ I then combined the daily activity table with the sleep table to look at the rel
 
 *This result shows that on an average users are recording over 9000 steps, the users are found to be meeting the recommended at least 7 hours of sleep*
 
-Next i looked at the time expenditure per day of the daily activities
+Next i Created a category column using the CDC BMI(Body Mass Index) classifications
 
        SELECT *
        EXCEPT(Weight_Kg,Weight_Pounds,Report_Type),
@@ -211,3 +211,7 @@ Next i looked at the time expenditure per day of the daily activities
             ELSE "Obese" END AS BMICategories
        FROM `my-sandbox-project-417117.weightlog_data.weight`
        WHERE BMI > 0
+
+![Sheet 1 (5)](https://github.com/user-attachments/assets/8cda10d5-144d-49de-8f49-b83283564873)
+
+
