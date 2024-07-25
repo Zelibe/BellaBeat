@@ -214,6 +214,12 @@ Next i Created a category column using the CDC BMI(Body Mass Index) classificati
 
 ![Sheet 1 (5)](https://github.com/user-attachments/assets/8cda10d5-144d-49de-8f49-b83283564873)
 
- *This result shows that 
+ *This result shows that more users were either Healthy or Overweight.
+
+ ## ACT
+ +  There should be a focus on making users understand the importance of exercising for their health and general well-being.
+ +  Sunday was found to be a day with little activity and steps. Bellabeat should make a point to increase reminders for users to make Sunday a selfcare day. Mindfulness and sleep 
+    should be emphasized on Sunday.
+ +   
 
 
