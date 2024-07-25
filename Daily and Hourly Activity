@@ -1,0 +1,118 @@
+DAILY ANALYSIS
+
+/*Checking the number of unique ids in each dataset*/
+  
+SELECT COUNT(DISTINCT id) AS unique_id
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+     
+SELECT id,
+COUNT(id) AS total_id
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+GROUP BY id
+
+--Now i classified their activities into three classes, which are; Active users, Moderate users and Light users.
+
+SELECT id,
+COUNT(id) AS total_uses,
+CASE
+WHEN COUNT(id) BETWEEN 21 AND 31 THEN 'active_user'
+WHEN COUNT(id) BETWEEN 11 and 20 THEN 'moderate_user'
+WHEN COUNT(id) BETWEEN 0 and 10 THEN 'light_user'
+END AS user_classification
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+GROUP BY id
+ 
+
+--We will now compare activities and calories in the dailyactivity_merged_cleaned dataset
+
+SELECT Id,
+SUM(Steps) as total_steps,
+SUM(VeryActive_Minutes) as total_Vactive_mins,
+SUM(FairlyActive_Minutes)  as total_Factive_mins,
+SUM(LightlyActive_Minutes) as total_Lactive_min,
+SUM(Calories) as total_calories 
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+GROUP BY Id
+
+--Now i analyze the dataset to identify the individuals with the highest average number of minutes spent being actively engaged
+
+SELECT Id,
+ROUND(AVG(VeryActive_Minutes),2) as avg_Vactive_mins,
+ROUND(AVG(FairlyActive_Minutes),2)  as avg_Factive_mins,
+ROUND(AVG(LightlyActive_Minutes),2) as avg_Lactive_min,
+ROUND(AVG(Sedentary_Minutes),2) as avg_sedantary_mins 
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+GROUP BY Id
+ORDER BY 2,3,4,5 DESC 
+
+--The most and least activity days on the average is then identified using this query
+
+SELECT Weekday,
+ROUND(AVG(VeryActive_Minutes),2) as avg_Vactive_mins,
+ROUND(AVG(FairlyActive_Minutes),2)  as avg_Factive_mins,
+ROUND(AVG(LightlyActive_Minutes),2) as avg_Lactive_min,
+ROUND(AVG(Sedentary_Minutes),2) as avg_sedantary_mins 
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis`
+GROUP BY Weekday
+ORDER BY 2,3,4,5 DESC
+
+SELECT Weekday,
+ROUND(AVG(VeryActive_Minutes + FairlyActive_Minutes + LightlyActive_Minutes),2) as total_avg_active_mins,
+ROUND(AVG(Sedentary_Minutes),2) as avg_sedantary_mins,
+ROUND(AVG(Calories), 2) AS avg_calories
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis` 
+GROUP BY Weekday
+ORDER BY 2,3,4 DESC
+
+--Next, I identified how much sleep users get on a average by compiling the sleep data into averages by user Ids then convering minutes to hours.
+
+SELECT id,
+ROUND(AVG(TotalMinutes_Asleep),2) as avg_sleep_time,
+ROUND(AVG(TotalTime_In_Bed),2) as avg_time_bed,
+ROUND(AVG(Time_Awake),2) as avg_time_awake
+FROM `my-sandbox-project-417117.sleep_data.sleep`
+GROUP BY Id
+       
+SELECT Id,
+ROUND(AVG(TotalTime_In_Bed)/60) AS avg_time_in_bed_h,
+ROUND(AVG(TotalMinutes_Asleep)/60) AS avg_time_asleep_h,
+ROUND(AVG(Time_Awake)/60) AS avg_time_awake_h
+FROM `my-sandbox-project-417117.sleep_data.sleep`
+GROUP BY Id
+
+--Next, i looked at the average of all activities recorded in the daily activities by using the day of the weeek using this query
+
+SELECT Weekday,
+ROUND(AVG(Steps),2) AS avg_steps,
+ROUND(AVG(Total_Distance), 2) AS avg_distance,
+ROUND(AVG(Calories), 2) AS avg_calories 
+FROM `my-sandbox-project-417117.dailyactivities_data.dailyactivities`
+GROUP BY Weekday
+ORDER BY 2 DESC
+
+--I then combined the daily activity table with the sleep table to look at the relationship using the steps column in the daily activity table
+
+  SELECT sp.id,
+  AVG(dailyactivity.Steps) AS avg_totalsteps,
+  dailyactivity.Weekday AS weekday,
+  ROUND(AVG(sp.TotalTime_In_Bed)/60) AS avg_time_in_bed_h,
+  ROUND(AVG(sp.TotalMinutes_Asleep)/60) AS avg_time_asleep_h,
+  ROUND(AVG(sp.Time_Awake)/60) AS avg_time_awake 
+  FROM `my-sandbox-project-417117.sleep_data.sleep` AS sp
+  INNER JOIN `my-sandbox-project-417117.dailyactivities_data.dailyactiviteis` AS dailyactivity
+  ON dailyactivity.Id = sp.Id
+  GROUP BY sp.Id,
+  dailyactivity.Weekday
+  ORDER BY 2 DESC   
+
+--Next i Created a category column using the CDC BMI(Body Mass Index) classifications
+
+SELECT *
+EXCEPT(Weight_Kg,Weight_Pounds,Report_Type),
+CASE WHEN BMI < 18.5 THEN "Underweight"
+      WHEN BMI < 25.0 THEN "Healthy"
+      WHEN BMI < 30.0 THEN "Overweight"
+      ELSE "Obese" END AS BMICategories
+FROM `my-sandbox-project-417117.weightlog_data.weight`
+WHERE BMI > 0
+  
