@@ -1,4 +1,4 @@
-[bquxjob_2a277a7f_190cc4b688b (1).csv](https://github.com/user-attachments/files/16316062/bquxjob_2a277a7f_190cc4b688b.1.csv)[bquxjob_454df10e_190c3601c1c.csv](https://github.com/user-attachments/files/16276352/bquxjob_454df10e_190c3601c1c.csv)# BellaBeat
+# BellaBeat
 ## How Can A Wellness Technology Play It Smart
 
 ### ASK
