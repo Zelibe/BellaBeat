@@ -218,8 +218,13 @@ Next i Created a category column using the CDC BMI(Body Mass Index) classificati
 
  ## ACT
  +  There should be a focus on making users understand the importance of exercising for their health and general well-being.
- +  Sunday was found to be a day with little activity and steps. Bellabeat should make a point to increase reminders for users to make Sunday a selfcare day. Mindfulness and sleep 
-    should be emphasized on Sunday.
- +   
+ +  Sunday was found to be a day with little activity and steps. Bellabeat should make a point to increase reminders for users to make 
+    Sunday a selfcare day. Mindfulness and sleep  should be emphasized on Sunday.
+ +  One of the initial recommemdations is to set reminders during the peak activity hours to engage in physical exercise if the 
+    calorie goals set by the user have not been achieved.
+ +  Since most users spend more time sedentary, Bellabeat can develop programs aimed at increasing activity levels such as challenges, 
+    reminders and tips for physical exercises.
+ +  The individuals who did not log in their weight may not have been concerned with losing weight or did not have the device to 
+    automatically  record this data. The Bella beat could market weight device that automatically record the weight.
 
 
